@@ -5,7 +5,7 @@
  * @implements {config}
  */
 
-const { debug } = require("./config.js").getConfig();
+const { debug, discovery_log } = require("./config.js").getConfig();
 
 /**
  * @function httpLog
@@ -35,11 +35,9 @@ function httpLog(req, res) {
  * @example <caption>Logging Output Format</caption>
  * ERROR:: IP "HTTP_METHOD URL PROTOCOL" STATUS_CODE DURATION_OF_REQUESTms ! ERROR
  */
-function errorLog(req, res, err) {
-  // this will be a generic error logger to grab some stats about what happened, how the server handled it. And of course the error.
-  let duration = Date.now() - req.start;
+function errorLog(err) {
   console.log(
-    `ERROR:: ${req.ip} "${req.method} ${req.url} ${req.protocol}" ${res.statusCode} ${duration}ms ! ${err}`
+    `ERROR:: ${err}`
   );
 }
 
@@ -55,15 +53,8 @@ function errorLog(req, res, err) {
  * @example <caption>Logging Output Format w/o Req and Res.</caption>
  * WARNING:: ERROR
  */
-function warningLog(req, res, err) {
-  if (req === undefined || res === undefined || req === null || res === null) {
-    console.log(`WARNING:: ${err}`);
-  } else {
-    let duration = Date.now() - req.start;
-    console.log(
-      `WARNING:: ${req.ip} "${req.method} ${req.url} ${req.protocol}" ${res.statusCode} ${duration}ms ! ${err}`
-    );
-  }
+function warningLog(err) {
+  console.log(`WARNING:: ${err}`);
 }
 
 /**
@@ -91,10 +82,17 @@ function debugLog(value) {
   }
 }
 
+function discoveryLog(value) {
+  if (discovery_log) {
+    console.log(`DISCOVERY:: ${value}`);
+  }
+}
+
 module.exports = {
   httpLog,
   errorLog,
   warningLog,
   infoLog,
   debugLog,
+  discoveryLog,
 };
