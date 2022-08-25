@@ -82,10 +82,29 @@ class Plugins {
     }
   }
   async loadPlugin(plug) {
-    let load = require(`.${plug.path}${plug.package.load}`);
-    await load.load(); // let the plugin do any setup needed 
-    let pack = require(`.${plug.path}${plug.package.main}`); 
-    return pack;
+    let item = require(`.${plug.paht}${plug.package.main}`);
+    await item.load(); // let the plugin do any setup needed 
+    return item;
+  }
+  async canSetup(service) {
+    for (let i = 0; i < this.deviceIntegrations.length; i++) {
+      let yes = await this.deviceIntegrations[i].canSetup(service);
+      
+      if (yes) {
+        return { setup: true, idx: i };
+      }
+    }
+    return { setup: false };
+  }
+  async startSetup(device_obj, plugin_idx) {
+    let controller = await this.deviceIntegrations[idx].setup(device_obj);
+    
+    if (typeof controller === "string") {
+      return { ok: false, content: controller };
+    } else {
+      // the setup was successful, and we can return.
+      return { ok: true, content: controller };
+    }
   }
 }
 

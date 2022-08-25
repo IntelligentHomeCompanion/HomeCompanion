@@ -5,6 +5,5 @@
   "main": "main.js",
   "author": "confused-Techie",
   "license": "ISC",
-  "providedService": "textParser",
-  "load": "loader.js"
+  "providedService": "textParser"
 }

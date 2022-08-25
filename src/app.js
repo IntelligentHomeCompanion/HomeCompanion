@@ -50,6 +50,16 @@ app.post("/setup", async (req, res) => {
   // this should include the device we want to setup.
   if (body.computer_name) {
     // now we can pass computer name to global Devices
+    let out = await companion.Devices.setup(computer_name);
+    
+    if (!out.ok) {
+      // handle errors for it.
+      res.status(500).json({ message: out.content });
+      logger.httpLog(req, res);
+    }
+    
+    // it went fine. 
+    
   } else {
     // invalid json given.
   }
