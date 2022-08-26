@@ -5,8 +5,6 @@
  * @implements {config}
  */
 
-const { debug, discovery_log } = require("./config.js").getConfig();
-
 /**
  * @function httpLog
  * @desc The standard logger for HTTP calls. Logging in a modified 'Apache Combined Log Format'.
@@ -77,13 +75,13 @@ function infoLog(value) {
  * DEBUG:: VALUE
  */
 function debugLog(value) {
-  if (debug) {
+  if (companion.config.debug) {
     console.log(`DEBUG:: ${value}`);
   }
 }
 
 function discoveryLog(value) {
-  if (discovery_log) {
+  if (companion.config.discovery_log) {
     console.log(`DISCOVERY:: ${value}`);
   }
 }
