@@ -1,0 +1,9 @@
+{
+  "name": "HomeCompanionDialog",
+  "description": "",
+  "main": "logic.js",
+  "version": "1.0.0",
+  "repository": "",
+  "license": "MIT",
+  "provides": "dialog"
+}

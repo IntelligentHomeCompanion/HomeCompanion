@@ -1,0 +1,11 @@
+{
+  "name": "primaryAPI",
+  "description": "The API Extension Modal Bundled with the core service.",
+  "main": "logic.js",
+  "version": "1.0.0",
+  "repository": "https://github.com/SmartHomeCompanion/HomeCompanion",
+  "issues": "https://github.com/SmartHomeCompanion/HomeCompanion/issues",
+  "author": "confused-Techie",
+  "license": "MIT",
+  "provides": "api"
+}

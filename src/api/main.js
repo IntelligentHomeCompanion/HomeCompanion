@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 // Here we will only declare system endpoints 
 
 app.get("/system/info", async (req, res) => {
-  res.status(202).json(
+  res.status(200).json(
     {
       "status": "System is up",
       "version": j_package.version,

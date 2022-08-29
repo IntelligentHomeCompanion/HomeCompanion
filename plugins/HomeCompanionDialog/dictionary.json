@@ -1,0 +1,22 @@
+{
+  "turn": {
+    "token": "turn",
+    "pos": [ "verb", "noun" ]
+  },
+  "on": {
+    "token": "on",
+    "pos": [ "preposition", "adverb" ]
+  },
+  "the": {
+    "token": "the",
+    "pos": [ "determiner" ]
+  },
+  "light": {
+    "token": "light",
+    "pos": [ "noun" ]
+  },
+  "please": {
+    "token": "please",
+    "pos": [ "adverb" ]
+  }
+}
