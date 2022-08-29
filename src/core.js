@@ -15,6 +15,7 @@ const api = require("./api/server.js");
 const Device = require("./device/main.js");
 const Plugins = require("./plugin/main.js");
 const IPA = require("./ipa/main.js");
+const { MDNS } = require("./discovery.js");
 
 (async () => {
   global.companion = {};
@@ -32,7 +33,9 @@ const IPA = require("./ipa/main.js");
   global.companion.ipa = new IPA();
   companion.utils.log.infoLog("HomeCompanion IPA Service UP...");
   
-  // TODO put discovery service here 
+  // The constructor here starts passive discovery 
+  global.companion.services.mdns_discovery = new MDNS(); 
+  companion.utils.log.infoLog("HomeCompanion MDNS Passive Discovery Service UP...");
   
   // now to setup the API server 
   await api.load();
@@ -63,7 +66,11 @@ process.on("SIGINT", async () => {
  * global.companion 
  *   .services 
  *     .api (API Module)
+ *     .mdns_discovery (Discovery Module)
  *   .utils (Utils Export)
  *   .config (Config Export)
  *   .api (API Export .instance())
+ *   .device (New Device Class)
+ *   .ipa (New IPA Class)
+ *   .plugin (New Plugin Class)
 */
