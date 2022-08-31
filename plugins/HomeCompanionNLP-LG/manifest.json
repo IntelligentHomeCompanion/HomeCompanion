@@ -1,0 +1,11 @@
+{
+  "name": "HomeCompanionNLP-LG",
+  "description": "NLP Module using the Link Grammar Model.",
+  "main": "logic.js",
+  "version": "1.0.0",
+  "repository": "https://github.com/SmartHomeCompanion/HomeCompanion",
+  "issues": "https://github.com/SmartHomeCompanion/HomeCompanion/issues",
+  "author": "confused-Techie",
+  "license": "MIT",
+  "provides": "nlp"
+}

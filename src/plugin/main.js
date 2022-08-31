@@ -22,6 +22,7 @@ class Plugins {
     this.dialog = undefined;
     this.history = undefined;
     this.knowledge = undefined;
+    this.nlp = undefined;
     
     this.init();
   }
@@ -116,10 +117,20 @@ class Plugins {
             if (this.knowledge === undefined) {
               this.knowledge = await this.loadPlugin(this.found_plugin_list[i]);
               // assign to ipa 
-              companion.api.knowledge = this.knowledge;
+              companion.ipa.knowledge = this.knowledge;
             } else {
               // TODO: Hook into notification system.
               companion.utils.log.debugLog(`${this.found_plugin_list[i].package.name} attempted to redeclare Existing Knowledge Graph Plugin.`);
+            }
+            break;
+          case "nlp":
+            // Natural Language Processor Plugin Modal 
+            if (this.nlp === undefined) {
+              this.nlp = await this.loadPlugin(this.found_plugin_list[i]);
+              companion.ipa.nlp = this.nlp;
+            } else {
+              // TODO: Hook into notification system.
+              companion.utils.log.debugLog(`${this.found_plugin_list[i].package.name} attempted to redeclare Exisitng Knowledge Graph Plugin.`);
             }
             break;
         }

@@ -24,6 +24,10 @@ async function Textual(query) {
   console.log(`Tokens (POS): ${NLP.deepTokens}`);
   console.log(NLP.deepTokens);
   
+  await NLP.POSTokens();
+  console.log(`Tokens (POSTokens): `);
+  console.log(NLP.deepTokens);
+  
   await NLP.POSRules();
   console.log(`Tokens (POSRules): `);
   console.log(NLP.deepTokens);

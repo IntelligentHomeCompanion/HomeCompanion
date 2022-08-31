@@ -79,17 +79,23 @@ class NLP {
       }
     }
   }
+  async POSTokens() {
+    // Intended to infer parts of speech from neighbor tokens 
+    for (let i = 0; i < this.deepTokens.length; i++) {
+      if (this.deepTokens[i].pos.includes("noun") && this.deepTokens[i-1].pos.length > 1 && this.deepTokens[i].pos.includes("determiner")) {
+        // If DETERMINER UNKOWN NOUN => UNKOWN = ADJECTIVE 
+        this.deepTokens[i-1].pos.push("adjective");
+      }
+    }
+  }
   async POSRules() {
+    // Intended to determine parts of the phrase from its parts of speech.
     // this will now take the POS tags, and use rules against it to try and determine each part of the phrase.
     for (let i = 0; i < this.deepTokens.length; i++) {
       if (this.deepTokens[i].pos.includes("preposition") && this.deepTokens[i-1].pos.includes("verb")) {
         // If VERB PREPOSITION => BOTH = Phrasal-Verb
         this.deepTokens[i].rule = "phrasal_verb";
         this.deepTokens[i-1].rule = "phrasal_verb";
-      }
-      if (this.deepTokens[i].pos.includes("noun") && this.deepTokens[i-1].pos.length > 1 && this.deepTokens[i].pos.includes("determiner")) {
-        // If DETERMINER UNKOWN NOUN => UNKOWN = ADJECTIVE 
-        this.deepTokens[i-1].pos.push("adjective");
       }
       if (this.deepTokens[i].pos.includes("noun") && this.deepTokens[i-1].pos.includes("determiner")) {
         // If DETERMINER NOUN => BOTH = Phrasal-Noun 
